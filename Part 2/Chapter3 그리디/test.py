@@ -1,12 +1,15 @@
-s1 = list(input())
-s2 = list(input())
-l = len(s2)
+docu = list(input())
+wanna_find = list(input())
+
+l = len(wanna_find)
 cnt = 0
-for i in range(len(s1)):
-    ch = s1[0:l]
-    if ch == s2:
+index = 0
+
+for i in range(len(docu) - l):
+    if docu[index:index+l] == wanna_find:
         cnt += 1
-        del s1[0:len(s2)]
+        index += l
     else:
-        del s1[0:1]
+        index += 1
+
 print(cnt)
