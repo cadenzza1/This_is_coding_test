@@ -1,20 +1,22 @@
-n = int(input())
-plans = input().split()
+n,m=map(int, input().split())
+player=[]
+answer=[0]*n
+result=[]
 
-dx = [0,0,1,-1]
-dy = [-1,1,0,0]
-
-x,y=1,1
-move_type = ["L","R","U","D"]
-
-for plan in plans:
-    for i in range(len(move_type)):
-        if plan == move_type[i]:
-            nx = x + dx[i]
-            ny = y + dy[i]
-    if nx < 1 or ny < 1 or nx > n or ny > n:
-        continue
-    else:
-        x,y = nx,ny
-
-print(x,y)
+for i in range(n):
+    tmp=sorted(list(map(int, input().split())))
+    player.append(tmp)
+    
+for i in range(m):
+    tmp=[]
+    for j in range(n):
+        tmp.append(player[j][i])
+    mx=max(tmp)
+    for j in range(n):
+        if mx==tmp[j]:
+            answer[j]+=1
+winner=max(answer)
+for i in range(n):
+    if answer[i]==winner:
+        result.append(i+1)
+print(*result)
